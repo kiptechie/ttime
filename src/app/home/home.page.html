@@ -24,4 +24,19 @@
 
 <p>{{ elapsed.h }}:{{ elapsed.m }}:{{ elapsed.s }}</p>
 
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ng-container *ngIf="timer == false; else running">
+    <ion-fab-button (click)="startTimer()">
+      <ion-icon name="play"></ion-icon>
+    </ion-fab-button>
+  </ng-container>
+  <ng-template #running>
+      <ion-fab-button (click)="stopTimer()">
+          <ion-icon name="square"></ion-icon>
+        </ion-fab-button>
+  </ng-template>
+  
+  
+</ion-fab>
+
 </ion-content>

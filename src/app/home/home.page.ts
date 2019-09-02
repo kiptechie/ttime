@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Insomnia } from '@ionic-native/insomnia/ngx';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomePage {
   }
   overallTimer:any = false;
 
-  constructor() {}
+  constructor(private insomnia: Insomnia) { }
 
   // click on svg graphic starts this timer function
   startTimer() {
@@ -33,6 +34,13 @@ export class HomePage {
     // overall timer display function
     if (!this.overallTimer) {
       this.progressTimer();
+
+      // enable insomnia
+      this.insomnia.keepAwake()
+        .then(
+          () => console.log('success'),
+          () => console.log('error')
+        );
     }
 
     // resets timer on each click
@@ -79,6 +87,25 @@ export class HomePage {
     let s = num+"";
     while (s.length < size) s = "0" + s;
     return s;
+  }
+
+  stopTimer() {
+    clearInterval(this.timer);
+    clearInterval(this.overallTimer);
+    this.overallTimer = false;
+    this.timer = false;
+    this.percent = 0;
+    this.progress = 0;
+    this.elapsed = {
+      h:'00', m:'00', s:'00'
+    }
+
+    // disable insomnia
+    this.insomnia.allowSleepAgain()
+      .then(
+        () => console.log('success'),
+        () => console.log('error')
+      );
   }
 
 }
