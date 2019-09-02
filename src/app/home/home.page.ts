@@ -1,12 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit, OnDestroy, AfterViewInit {
+
+  backButtonSubscription; 
+  // for storing the returned subscription
+
+  ngOnInit() { }
+  ngAfterViewInit() {
+    this.backButtonSubscription = this.platform.backButton.subscribe(() => {
+      navigator['app'].exitApp();
+    });
+   }
+  ngOnDestroy() {
+    this.backButtonSubscription.unsubscribe();
+   }
 
   percent:number = 0;
   radius:number = 100;
@@ -21,7 +35,7 @@ export class HomePage {
   }
   overallTimer:any = false;
 
-  constructor(private insomnia: Insomnia) { }
+  constructor(private insomnia: Insomnia, private platform: Platform) { }
 
   // click on svg graphic starts this timer function
   startTimer() {
