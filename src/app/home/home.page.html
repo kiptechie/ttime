@@ -1,5 +1,11 @@
 <ion-content padding>
-  <circle-progress
+
+    <ion-item color="dark">
+        <ion-label>Rest Duration</ion-label>
+        <ion-datetime displayFormat="mm:ss" placeholder="Tap Here" [(ngModel)]="fullTime"></ion-datetime>
+      </ion-item>
+
+  <circle-progress (click)="startTimer()"
   [percent]="percent"
   [maxPercent]="100"
   [radius]="radius"
