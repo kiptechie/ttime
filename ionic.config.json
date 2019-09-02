@@ -1,5 +1,7 @@
 {
   "name": "ttime",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
