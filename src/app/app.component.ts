@@ -34,7 +34,7 @@ export class AppComponent {
       // set status bar to white
       this.statusBar.backgroundColorByHexString('#000');
       this.splashScreen.hide();
-      // code that is executed when the user pressed the back button
+      // code that is executed when the user pressed the back button (Click again to exit)
       this.platform.backButton.subscribe(() => {
         if (this.counter == 0) {
           this.counter++;
@@ -49,6 +49,7 @@ export class AppComponent {
     });
   }
 
+  // display the toast message at the bottom of the screen
   presentToast() {
     this.toast = this.toastController.create({
       message: "Press again to exit",

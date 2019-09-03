@@ -4,3 +4,20 @@ p {
     width: 100%;
     text-align: center;
 }
+
+.picker-toolbar.sc-ion-picker-ios {
+    border-bottom: 0;
+}
+.picker-wrapper.sc-ion-picker-ios {
+    border-top: 0;
+}
+.picker-wrapper.sc-ion-picker-ios {
+    background: #2b2b2b;
+}
+.picker-above-highlight.sc-ion-picker-ios, .picker-below-highlight.sc-ion-picker-ios {
+    background: rgba(0,0,0,.5);
+    border: none;
+}
+.picker-opt {
+    color: white;
+}
