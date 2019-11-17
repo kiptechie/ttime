@@ -10,6 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { Insomnia } from '@ionic-native/insomnia/ngx';
+import { Dialogs } from '@ionic-native/dialogs/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { DeviceFeedback } from '@ionic-native/device-feedback/ngx';
 
 
 @NgModule({
@@ -20,7 +24,11 @@ import { Insomnia } from '@ionic-native/insomnia/ngx';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Insomnia
+    Insomnia,
+    Dialogs,
+    LocalNotifications,
+    NativeAudio,
+    DeviceFeedback
   ],
   bootstrap: [AppComponent]
 })

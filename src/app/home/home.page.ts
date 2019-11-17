@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
+import { Dialogs } from '@ionic-native/dialogs/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { DeviceFeedback } from '@ionic-native/device-feedback/ngx';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +14,7 @@ export class HomePage  {
 
   percent = 0;
   radius = 100;
-  fullTime: any = '00:01:00';
+  fullTime: any = '00:01:30';
   timer: any = false;
   progress: any = 0;
   minutes = 1;
@@ -22,17 +26,27 @@ export class HomePage  {
 
   overallTimer: any = false;
 
-  constructor(private insomnia: Insomnia) { }
+  // tslint:disable-next-line: max-line-length
+  constructor(private insomnia: Insomnia, private dialogs: Dialogs, private localNotifications: LocalNotifications, private nativeAudio: NativeAudio, private deviceFeedback: DeviceFeedback) { }
 
   // click on svg graphic starts this timer function
   startTimer() {
+
+    // enable haptic feedback
+    this.deviceFeedback.isFeedbackEnabled().then(feedback => {
+      console.log(feedback);
+      {
+      //   acoustic: true,
+        haptic: true
+      }
+    });
 
     // clear interval everytime it is clicked preventing the app going crazy on multiple clicks hehe!
     if (this.timer) {
       clearInterval(this.timer);
     }
 
-    // overall timer display function
+        // overall timer display function
     if (!this.overallTimer) {
       this.progressTimer();
 
@@ -61,6 +75,40 @@ export class HomePage  {
 
       if (this.percent === this.radius) {
         clearInterval(this.timer);
+        this.dialogs.alert('Rest Complete')
+          .then(() => console.log('Dialog dismissed'))
+          .catch(e => console.log('Error displaying dialog', e));
+        this.dialogs.beep(1);
+        // Schedule a single notification
+        this.localNotifications.schedule({
+          id: 1,
+          title: 'Rest Complete',
+          // sound: isAndroid ? 'file://sound.mp3' : 'file://beep.caf',
+          text:  'you have completed your rest',
+          foreground: true,
+          actions: [
+            { id: 'yes', title: 'Okay' }
+        ]
+        });
+        console.log('Rest complete');
+      } else if (this.percent === 50) {
+        this.dialogs.alert('Half way there')
+          .then(() => console.log('Dialog dismissed'))
+          .catch(e => console.log('Error displaying dialog', e));
+        // this.dialogs.beep(1);
+        this.nativeAudio.play('assets/music/old-fashioned-school-bell-daniel_simon.mp3');
+        // Schedule a single notification
+        this.localNotifications.schedule({
+          id: 1,
+          title: 'Half way there',
+          // sound: isAndroid ? 'file://sound.mp3' : 'file://beep.caf',
+          text:  'you have completed half your rest',
+          foreground: true,
+          actions: [
+            { id: 'yes', title: 'Okay' }
+        ]
+        });
+        console.log('Half way there');
       }
 
       this.percent = Math.floor((this.progress / totalSeconds) * 100);
@@ -108,6 +156,15 @@ export class HomePage  {
         () => console.log('success'),
         () => console.log('error')
       );
+
+      // enable haptic feedback
+    this.deviceFeedback.isFeedbackEnabled().then(feedback => {
+        console.log(feedback);
+        {
+        //   acoustic: true,
+           haptic: true
+         }
+      });
   }
 
 }

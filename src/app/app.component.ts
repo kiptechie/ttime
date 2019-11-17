@@ -36,29 +36,28 @@ export class AppComponent {
       this.splashScreen.hide();
       // code that is executed when the user pressed the back button (Click again to exit)
       this.platform.backButton.subscribe(() => {
-        if (this.counter == 0) {
+        if (this.counter === 0) {
           this.counter++;
           this.presentToast();
-          setTimeout(() => { this.counter = 0 }, 3000)
+          setTimeout(() => { this.counter = 0; }, 3000);
         } else {
           // console.log("exitapp");
           // this.platform.exitApp();
           navigator['app'].exitApp();
         }
-      })
+      });
     });
   }
 
   // display the toast message at the bottom of the screen
   presentToast() {
     this.toast = this.toastController.create({
-      message: "Press again to exit",
+      message: 'Press again to exit',
       duration: 3000,
-      position: "bottom"
-    }).then((toastData)=>{
+      position: 'bottom'
+    }).then((toastData) => {
       console.log(toastData);
       toastData.present();
     });
   }
-  
 }

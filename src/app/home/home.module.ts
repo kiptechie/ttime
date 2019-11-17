@@ -26,12 +26,16 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       radius: 100,
       outerStrokeWidth: 16,
       innerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
+      outerStrokeColor: '#78C000',
+      innerStrokeColor: '#C7E596',
       animationDuration: 300,
       animation: false,
       responsive: true,
-      renderOnClick: false
+      renderOnClick: false,
+      showImage: true,
+      imageSrc: '/assets/icon/clock.png',
+      imageHeight: 80,
+      imageWidth: 80
     })
   ],
   declarations: [HomePage]
