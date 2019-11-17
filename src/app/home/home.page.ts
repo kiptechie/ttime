@@ -78,7 +78,7 @@ export class HomePage  {
         this.dialogs.alert('Rest Complete')
           .then(() => console.log('Dialog dismissed'))
           .catch(e => console.log('Error displaying dialog', e));
-        this.dialogs.beep(1);
+        // this.dialogs.beep(1);
         // Schedule a single notification
         this.localNotifications.schedule({
           id: 1,
@@ -90,15 +90,15 @@ export class HomePage  {
             { id: 'yes', title: 'Okay' }
         ]
         });
+         // start music
+        this.nativeAudio.preloadSimple('click', 'assets/music/old-fashioned-school-bell-daniel_simon.mp3');
+        this.nativeAudio.play('click');
         console.log('Rest complete');
       } else if (this.percent === 50) {
         this.dialogs.alert('Half way there')
           .then(() => console.log('Dialog dismissed'))
           .catch(e => console.log('Error displaying dialog', e));
-        // this.dialogs.beep(1);
-        // start music
-        this.nativeAudio.preloadSimple('click', 'assets/music/old-fashioned-school-bell-daniel_simon.mp3');
-        this.nativeAudio.play('click');
+        this.dialogs.beep(1);
         // Schedule a single notification
         this.localNotifications.schedule({
           id: 1,
