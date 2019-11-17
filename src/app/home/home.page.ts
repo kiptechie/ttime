@@ -96,7 +96,9 @@ export class HomePage  {
           .then(() => console.log('Dialog dismissed'))
           .catch(e => console.log('Error displaying dialog', e));
         // this.dialogs.beep(1);
-        this.nativeAudio.play('assets/music/old-fashioned-school-bell-daniel_simon.mp3');
+        // start music
+        this.nativeAudio.preloadSimple('click', 'assets/music/old-fashioned-school-bell-daniel_simon.mp3');
+        this.nativeAudio.play('click');
         // Schedule a single notification
         this.localNotifications.schedule({
           id: 1,
@@ -165,6 +167,10 @@ export class HomePage  {
            haptic: true
          }
       });
+
+      // stop music
+    this.nativeAudio.stop('click');
+    this.nativeAudio.unload('click');
   }
 
 }
