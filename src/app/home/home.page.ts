@@ -31,15 +31,11 @@ export class HomePage  {
 
   // click on svg graphic starts this timer function
   startTimer() {
+    // preload music
+    this.nativeAudio.preloadSimple('click', 'assets/music/old-fashioned-school-bell-daniel_simon.mp3');
 
     // enable haptic feedback
-    this.deviceFeedback.isFeedbackEnabled().then(feedback => {
-      console.log(feedback);
-      {
-      //   acoustic: true,
-        haptic: true
-      }
-    });
+    this.deviceFeedback.haptic(1);
 
     // clear interval everytime it is clicked preventing the app going crazy on multiple clicks hehe!
     if (this.timer) {
@@ -83,6 +79,7 @@ export class HomePage  {
         this.localNotifications.schedule({
           id: 1,
           title: 'Rest Complete',
+          icon: 'assets/icon/clock',
           // sound: isAndroid ? 'file://sound.mp3' : 'file://beep.caf',
           text:  'you have completed your rest',
           foreground: true,
@@ -91,7 +88,6 @@ export class HomePage  {
         ]
         });
          // start music
-        this.nativeAudio.preloadSimple('click', 'assets/music/old-fashioned-school-bell-daniel_simon.mp3');
         this.nativeAudio.play('click');
         console.log('Rest complete');
       } else if (this.percent === 50) {
@@ -100,7 +96,7 @@ export class HomePage  {
           .catch(e => console.log('Error displaying dialog', e));
         this.dialogs.beep(1);
         // Schedule a single notification
-        this.localNotifications.schedule({
+       /* this.localNotifications.schedule({
           id: 1,
           title: 'Half way there',
           // sound: isAndroid ? 'file://sound.mp3' : 'file://beep.caf',
@@ -109,7 +105,7 @@ export class HomePage  {
           actions: [
             { id: 'yes', title: 'Okay' }
         ]
-        });
+        });*/
         console.log('Half way there');
       }
 
@@ -160,13 +156,7 @@ export class HomePage  {
       );
 
       // enable haptic feedback
-    this.deviceFeedback.isFeedbackEnabled().then(feedback => {
-        console.log(feedback);
-        {
-        //   acoustic: true,
-           haptic: true
-         }
-      });
+    this.deviceFeedback.haptic(0);
 
       // stop music
     this.nativeAudio.stop('click');
