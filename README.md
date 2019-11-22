@@ -71,7 +71,7 @@ All app preview screenshots were taken by running `ionic serve` on google chrome
 1. Run `ionic cordova run ios --prod`
 
 ## Contributing
-I am glad you’re interested in ionicShoppingCart, and I’d love to see where you take it. If you would wish to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
+I am glad you’re interested in ttime, and I’d love to see where you take it. If you would wish to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
 
 When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible. I look forward to you submitting a Pull Request.
 
