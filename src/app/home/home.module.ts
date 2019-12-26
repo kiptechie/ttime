@@ -33,7 +33,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       responsive: true,
       renderOnClick: false,
       showImage: true,
-      imageSrc: '/assets/icon/clock.png',
+      // imageSrc: '/assets/icon/clock.png',
       imageHeight: 80,
       imageWidth: 80
     })
