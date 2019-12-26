@@ -158,8 +158,8 @@ export class HomePage  {
     this.deviceFeedback.haptic(0);
 
       // stop music
-    this.nativeAudio.stop('click');
-    this.nativeAudio.unload('click');
+    this.nativeAudio.stop('restComplete');
+    this.nativeAudio.unload('restComplete');
   }
 
 }
