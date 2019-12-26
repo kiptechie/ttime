@@ -31,8 +31,6 @@ export class HomePage  {
 
   // click on svg graphic starts this timer function
   startTimer() {
-    // preload music
-    this.nativeAudio.preloadSimple('click', 'assets/music/old-fashioned-school-bell-daniel_simon.mp3');
 
     // enable haptic feedback
     this.deviceFeedback.haptic(1);
@@ -88,10 +86,11 @@ export class HomePage  {
         ]
         });
          // start music
-        this.nativeAudio.play('click');
+        // preload music
+        this.nativeAudio.preloadSimple('restComplete', 'assets/music/deduction.mp3').then(r => this.nativeAudio.play('restComplete'));
         console.log('Rest complete');
       } else if (this.percent === 50) {
-        this.dialogs.alert('Half way there')
+        this.dialogs.alert('Half way there get ready!!')
           .then(() => console.log('Dialog dismissed'))
           .catch(e => console.log('Error displaying dialog', e));
         this.dialogs.beep(1);
