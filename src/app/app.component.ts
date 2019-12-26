@@ -32,7 +32,7 @@ export class AppComponent {
       // let status bar overlay webview
       this.statusBar.overlaysWebView(true);
       // set status bar to white
-      this.statusBar.backgroundColorByHexString('#000');
+      this.statusBar.backgroundColorByHexString('#000000');
       this.splashScreen.hide();
       // code that is executed when the user pressed the back button (Click again to exit)
       this.platform.backButton.subscribe(() => {
