@@ -13,8 +13,8 @@ import { HomePage } from './home/home.page';
 })
 export class AppComponent {
 
-  rootPage:any = HomePage;
-  public counter=0;
+  rootPage: any = HomePage;
+  public counter = 0;
   toast: any;
 
   constructor(
