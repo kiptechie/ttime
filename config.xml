@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="co.ke.ttime.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>ttime</name>
+    <name>tTime</name>
     <description>A simple ionic4 app to time your rest durations during workouts.</description>
     <author email="theecodepoet@gmail.com" href="https://github.com/kiptechie/ttime">Kiptechie</author>
     <content src="index.html" />

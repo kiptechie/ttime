@@ -27,15 +27,24 @@ export class HomePage  {
   overallTimer: any = false;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private insomnia: Insomnia, private dialogs: Dialogs, private localNotifications: LocalNotifications, private nativeAudio: NativeAudio, private deviceFeedback: DeviceFeedback) { }
+  constructor(private insomnia: Insomnia,
+              private dialogs: Dialogs,
+              private localNotifications: LocalNotifications,
+              private nativeAudio: NativeAudio,
+              private deviceFeedback: DeviceFeedback) {
+    // enable haptic feedback
+    this.deviceFeedback.acoustic();
+    this.deviceFeedback.haptic(0);
+  }
 
   // click on svg graphic starts this timer function
   startTimer() {
 
-    // enable haptic feedback
-    this.deviceFeedback.haptic(1);
+    // preload music
+    // this.nativeAudio.preloadSimple('restComplete', 'assets/music/deduction.mp3');
+    // this.nativeAudio.preloadSimple('restHalfway', 'assets/music/moonless.mp3');
 
-    // clear interval everytime it is clicked preventing the app going crazy on multiple clicks hehe!
+    // clear interval each time it is clicked preventing the app going crazy on multiple clicks hehe!
     if (this.timer) {
       clearInterval(this.timer);
     }
@@ -68,16 +77,24 @@ export class HomePage  {
     this.timer = setInterval(() => {
 
       if (this.percent === this.radius) {
+        this.deviceFeedback.isFeedbackEnabled().then(feedback => {
+          console.log(feedback);
+          {
+          //   acoustic: true,
+            // tslint:disable-next-line:no-unused-expression label-position
+          haptic: true;
+          }
+        });
         clearInterval(this.timer);
-        this.dialogs.alert('Rest Complete')
+       /* this.dialogs.alert('Rest Complete')
           .then(() => console.log('Dialog dismissed'))
-          .catch(e => console.log('Error displaying dialog', e));
+          .catch(e => console.log('Error displaying dialog', e));*/
         // this.dialogs.beep(1);
         // Schedule a single notification
         this.localNotifications.schedule({
           id: 1,
           title: 'Rest Complete',
-          icon: 'assets/icon/clock',
+          icon: 'default',
           // sound: isAndroid ? 'file://sound.mp3' : 'file://beep.caf',
           text:  'you have completed your rest',
           foreground: true,
@@ -87,13 +104,13 @@ export class HomePage  {
         });
          // start music
         // preload music
-        this.nativeAudio.preloadSimple('restComplete', 'assets/music/deduction.mp3').then(r => this.nativeAudio.play('restComplete'));
+        this.nativeAudio.preloadSimple('restComplete', 'assets/music/moonless.mp3').then(r => this.nativeAudio.play('restComplete'));
         console.log('Rest complete');
       } else if (this.percent === 50) {
-        this.dialogs.alert('Half way there get ready!!')
+        /*this.dialogs.alert('Half way there get ready!!')
           .then(() => console.log('Dialog dismissed'))
           .catch(e => console.log('Error displaying dialog', e));
-        this.dialogs.beep(1);
+        this.dialogs.beep(1);*/
         // Schedule a single notification
        /* this.localNotifications.schedule({
           id: 1,
@@ -105,7 +122,16 @@ export class HomePage  {
             { id: 'yes', title: 'Okay' }
         ]
         });*/
+        this.nativeAudio.preloadSimple('restHalfway', 'assets/music/deduction.mp3').then(r => this.nativeAudio.play('restHalfway'));
         console.log('Half way there');
+        this.deviceFeedback.isFeedbackEnabled().then(feedback => {
+          console.log(feedback);
+          {
+            //   acoustic: true,
+            // tslint:disable-next-line:no-unused-expression label-position
+            haptic: true;
+          }
+        });
       }
 
       this.percent = Math.floor((this.progress / totalSeconds) * 100);
@@ -154,12 +180,18 @@ export class HomePage  {
         () => console.log('error')
       );
 
-      // enable haptic feedback
-    this.deviceFeedback.haptic(0);
+    this.deviceFeedback.isFeedbackEnabled().then(feedback => {
+      console.log(feedback);
+      {
+        //   acoustic: true,
+        // tslint:disable-next-line:no-unused-expression label-position
+        haptic: true;
+      }
+    });
 
-      // stop music
+   /*   // stop music
     this.nativeAudio.stop('restComplete');
-    this.nativeAudio.unload('restComplete');
+    this.nativeAudio.unload('restComplete');*/
   }
 
 }
