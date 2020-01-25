@@ -8,6 +8,7 @@
 
       </ion-item>
 
+ <ion-card>
   <circle-progress (click)="startTimer()"
   [percent]="percent"
   [maxPercent]="100"
@@ -23,6 +24,7 @@
   [outerStrokeGradient]="true"
   [outerStrokeGradientStopColor]="'#3CD500'"
   [showInnerStroke]="false"></circle-progress>
+ </ion-card>
 
 <p>{{ elapsed.h }}:{{ elapsed.m }}:{{ elapsed.s }}</p>
 

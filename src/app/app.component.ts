@@ -30,7 +30,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       // let status bar overlay webview
-      this.statusBar.overlaysWebView(true);
+      this.statusBar.overlaysWebView(false);
       // set status bar to dark
       this.statusBar.backgroundColorByHexString('#000000');
       this.splashScreen.hide();

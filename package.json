@@ -31,6 +31,7 @@
     "@ionic/angular": "^4.11.7",
     "@ionic/lab": "^2.0.18",
     "cordova-android": "^8.1.0",
+    "cordova-browser": "6.0.0",
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-dialogs": "^2.0.2",
@@ -93,7 +94,8 @@
       "cordova-plugin-velda-devicefeedback": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

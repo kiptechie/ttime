@@ -23,7 +23,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     // Specify ng-circle-progress as an import
     NgCircleProgressModule.forRoot({
       // set defaults here
-      radius: 100,
+      radius: 50,
       outerStrokeWidth: 16,
       innerStrokeWidth: 8,
       outerStrokeColor: '#78C000',
@@ -34,8 +34,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       renderOnClick: false,
       showImage: true,
       // imageSrc: '/assets/icon/clock.png',
-      imageHeight: 80,
-      imageWidth: 80
+      // imageHeight: 80,
+      // imageWidth: 80
     })
   ],
   declarations: [HomePage]
